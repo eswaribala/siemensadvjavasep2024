@@ -113,5 +113,7 @@ public class BuiltInFunctionalInterfaces {
 
         log.info(""+compareProductPrices.apply(productInstance,productInstance,productInstance));
 
+
+
     }
 }
