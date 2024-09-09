@@ -12,16 +12,27 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
 public class CollectAndThenDemo {
     public static void main(String[] args){
         CustomerDao customerDao=new CustomerImpl();
         addCustomers(customerDao);
+        /*
         Map<LocalDate, Set<String>> customersSet=customerDao
                 .getAllCustomers()
                 .stream().collect(Collectors.groupingBy(c -> c.getDob(),
                         Collectors.mapping(c -> c.getName(),
                                 Collectors.collectingAndThen(Collectors.toSet(),
                                         Collections::unmodifiableSet))));
+        customersSet.entrySet().stream().forEach(entry->System.out.println(entry.getKey()+","+entry.getValue()));
+        */
+        //grouping by count
+
+        Map<LocalDate, Long> customersSet=customerDao
+                .getAllCustomers()
+                .stream().collect(groupingBy(Customer::getDob,counting()));
         customersSet.entrySet().stream().forEach(entry->System.out.println(entry.getKey()+","+entry.getValue()));
 
     }
