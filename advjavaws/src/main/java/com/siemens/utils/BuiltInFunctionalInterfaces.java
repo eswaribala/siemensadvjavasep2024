@@ -85,8 +85,11 @@ public class BuiltInFunctionalInterfaces {
        Predicate<Product> testProduct=(product)->{
            return product.getName().startsWith("a");
        };
-
       log.info(""+testProduct.test(productInstance) );
+
+      //bipredicate compare two product prices
+
+        
 
 
     }
