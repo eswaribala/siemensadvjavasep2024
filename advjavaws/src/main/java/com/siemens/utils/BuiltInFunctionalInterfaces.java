@@ -76,6 +76,8 @@ public class BuiltInFunctionalInterfaces {
        Consumer<Product> consumerProduct= (product)->{
            if (product.getCost()>90.00)
                  log.info("Quite costly");
+           else
+               log.info("Quite affordable");
        };
 
        consumerProduct.accept(new Product(faker.random().nextInt(10000),
