@@ -31,6 +31,7 @@ public class StreamCollectorsDemo {
                 .println(entry.getKey() + "," + entry.getValue()));
 
         //Group the products by location
+
         for (int i = 0; i < 100; i++) {
             productDAO.addProductV1(createProductV1());
         }
@@ -42,11 +43,14 @@ public class StreamCollectorsDemo {
                 .println(entry.getKey() + "," + entry.getValue()));
 
 
+
+
+
     }
 
     static ProductV1 createProductV1() {
         Faker faker = new Faker();
-        return new ProductV1(faker.random().nextInt(10000),
+        return new ProductV1(faker.random().nextInt(100000),
                 faker.food().vegetable().toLowerCase(),
                 faker.random().nextInt(10000),
                 faker.food().measurement(),
