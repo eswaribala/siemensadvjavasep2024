@@ -37,7 +37,7 @@ public class CollectAndThenDemo {
 
     }
 
-    private static void addCustomers(CustomerDao customerDao){
+    public static void addCustomers(CustomerDao customerDao){
         Faker faker=new Faker();
         for(int i=0;i<100;i++){
             customerDao.addCustomer(new Customer(faker.artist().name(),

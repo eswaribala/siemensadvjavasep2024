@@ -3,6 +3,7 @@ package com.siemens.utils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class ParallelStreamDemo {
@@ -16,6 +17,14 @@ public class ParallelStreamDemo {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+            try {
+               List<String> lines= Files.readAllLines(fileName.toPath());
+               lines.parallelStream().forEach(System.out::println);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
 
         }
     }
