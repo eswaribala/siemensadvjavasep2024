@@ -10,7 +10,6 @@ public class SwitchExpressionDemo {
         employee.setBonus(computeBonus(20,employee));
         System.out.println(employee);
 
-
     }
 
     private static double computeBonus(int profitPerc,Employee employee){
