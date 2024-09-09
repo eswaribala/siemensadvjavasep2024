@@ -33,6 +33,8 @@ public class HttpClientDemo {
             HttpHeaders httpHeaders= httpResponse.headers();
             httpHeaders.map().entrySet().stream().forEach(entry->System.out.println(entry.getKey()
                     +","+entry.getValue()));
+            //print all the country names
+
 
 
         } catch (IOException e) {
