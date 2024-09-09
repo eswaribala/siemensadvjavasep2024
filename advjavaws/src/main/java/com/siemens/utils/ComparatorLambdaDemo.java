@@ -19,11 +19,12 @@ public class ComparatorLambdaDemo {
 
 
         //without stream how to do comparison
+        /*
         Comparator<Product> comparator=(p1,p2)->{
             if(p1.getCost()>p2.getCost())
-                return 1;
-            else if (p1.getCost()<p2.getCost()) {
                 return -1;
+            else if (p1.getCost()<p2.getCost()) {
+                return 1;
 
             }else
                 return 0;
@@ -31,7 +32,18 @@ public class ComparatorLambdaDemo {
         productDAO.getAllProducts().sort(comparator);
         for(Product product:productDAO.getAllProducts())
             System.out.println(product);
+        */
 
+        //with  stream and lambda
+
+        productDAO.getAllProducts().stream().sorted((p1,p2)->{
+            if(p1.getCost()>p2.getCost())
+                return -1;
+            else if (p1.getCost()<p2.getCost())
+                return 1;
+            else
+                return 0;
+        }).forEach(System.out::println);
 
 
     }
