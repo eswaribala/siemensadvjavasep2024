@@ -5,13 +5,15 @@ import com.siemens.dao.CartDao;
 import com.siemens.dao.ProductDAO;
 import com.siemens.dao.ProductImpl;
 import com.siemens.models.Product;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
-
+@Slf4j
 public class BuiltInFunctionalInterfaces {
 
     public static void main(String[] args){
@@ -70,6 +72,19 @@ public class BuiltInFunctionalInterfaces {
         //method reference
        Supplier<Integer> generatedOTP= CartDao::generateOTP;
         System.out.println("OTP->"+generatedOTP.get());
+       //logging
+       Consumer<Product> consumerProduct= (product)->{
+           if (product.getCost()>90.00)
+                 log.info("Quite costly");
+       };
+
+       consumerProduct.accept(new Product(faker.random().nextInt(10000),
+               faker.food().vegetable().toLowerCase(),
+               faker.random().nextInt(10000),
+               faker.food().measurement(),
+               Double.parseDouble(faker.commerce().price())));
+
+
 
 
 
