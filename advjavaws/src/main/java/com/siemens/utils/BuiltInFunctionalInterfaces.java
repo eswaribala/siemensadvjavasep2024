@@ -8,10 +8,7 @@ import com.siemens.models.Product;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Collectors;
 @Slf4j
 public class BuiltInFunctionalInterfaces {
@@ -56,11 +53,13 @@ public class BuiltInFunctionalInterfaces {
 
         };
         Faker faker=new Faker();
-       System.out.println(finalPrice.apply(new Product(faker.random().nextInt(10000),
+        Product productInstance=new Product(faker.random().nextInt(10000),
                 faker.food().vegetable().toLowerCase(),
                 faker.random().nextInt(10000),
                 faker.food().measurement(),
-                Double.parseDouble(faker.commerce().price())),0.05f));
+                Double.parseDouble(faker.commerce().price()));
+
+       System.out.println(finalPrice.apply(productInstance,0.05f));
 
        //compare product1 unit with product 2 unit and say are they same or not
 
@@ -80,14 +79,14 @@ public class BuiltInFunctionalInterfaces {
                log.info("Quite affordable");
        };
 
-       consumerProduct.accept(new Product(faker.random().nextInt(10000),
-               faker.food().vegetable().toLowerCase(),
-               faker.random().nextInt(10000),
-               faker.food().measurement(),
-               Double.parseDouble(faker.commerce().price())));
+       consumerProduct.accept(productInstance);
 
 
+       Predicate<Product> testProduct=(product)->{
+           return product.getName().startsWith("a");
+       };
 
+      log.info(""+testProduct.test(productInstance) );
 
 
     }
