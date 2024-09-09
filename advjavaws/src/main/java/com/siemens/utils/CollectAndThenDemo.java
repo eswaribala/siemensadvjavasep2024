@@ -7,12 +7,23 @@ import com.siemens.models.Customer;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CollectAndThenDemo {
     public static void main(String[] args){
         CustomerDao customerDao=new CustomerImpl();
         addCustomers(customerDao);
-        customerDao.getAllCustomers().stream().forEach(System.out::println);
+        Map<LocalDate, Set<String>> customersSet=customerDao
+                .getAllCustomers()
+                .stream().collect(Collectors.groupingBy(c -> c.getDob(),
+                        Collectors.mapping(c -> c.getName(),
+                                Collectors.collectingAndThen(Collectors.toSet(),
+                                        Collections::unmodifiableSet))));
+        customersSet.entrySet().stream().forEach(entry->System.out.println(entry.getKey()+","+entry.getValue()));
+
     }
 
     private static void addCustomers(CustomerDao customerDao){
