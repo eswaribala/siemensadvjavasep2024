@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import com.siemens.dao.CartDao;
 import com.siemens.dao.ProductDAO;
 import com.siemens.dao.ProductImpl;
+import com.siemens.dao.TriFunction;
 import com.siemens.models.Product;
 import lombok.extern.slf4j.Slf4j;
 
@@ -88,9 +89,29 @@ public class BuiltInFunctionalInterfaces {
       log.info(""+testProduct.test(productInstance) );
 
       //bipredicate compare two product prices
+        BiPredicate<Product,Product> testProductPrices=(p1,p2)->{
+            return p1.getCost()==p2.getCost();
+        };
+       log.info(""+testProductPrices.test(productInstance,productInstance));
 
-        
 
+        TriFunction<Product,Product,Product,Boolean> compareProductPrices=(p1,p2,p3)->{
+             boolean status=false;
+            if(p1.getCost()>p2.getCost()){
+                if(p1.getCost()>p3.getCost())
+                    status= true;
+                else
+                    status= false;
+            }else{
+                if(p2.getCost()>p3.getCost())
+                    status= true;
+                else
+                    status= false;
+            }
+           return status;
+        };
+
+        log.info(""+compareProductPrices.apply(productInstance,productInstance,productInstance));
 
     }
 }
