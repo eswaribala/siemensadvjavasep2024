@@ -1,6 +1,7 @@
 package com.siemens.utils;
 
 import com.github.javafaker.Faker;
+import com.siemens.dao.CartDao;
 import com.siemens.dao.ProductDAO;
 import com.siemens.dao.ProductImpl;
 import com.siemens.models.Product;
@@ -8,6 +9,7 @@ import com.siemens.models.Product;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class BuiltInFunctionalInterfaces {
@@ -57,8 +59,18 @@ public class BuiltInFunctionalInterfaces {
                 faker.random().nextInt(10000),
                 faker.food().measurement(),
                 Double.parseDouble(faker.commerce().price())),0.05f));
-       
+
        //compare product1 unit with product 2 unit and say are they same or not
+
+       //supplier to create the instance
+        Supplier<Product> productSupplier=Product::new;
+        System.out.println(productSupplier.get().getProductId());
+
+       //Generate OTP to confirm the cart
+        //method reference
+       Supplier<Integer> generatedOTP= CartDao::generateOTP;
+        System.out.println("OTP->"+generatedOTP.get());
+
 
 
     }
