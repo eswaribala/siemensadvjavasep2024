@@ -48,7 +48,7 @@ public class ComparatorLambdaDemo {
 
     }
 
-    static Product createProduct(){
+    public static Product createProduct(){
         Faker faker=new Faker();
         return new Product(faker.random().nextInt(10000),
                 faker.food().vegetable().toLowerCase(),
