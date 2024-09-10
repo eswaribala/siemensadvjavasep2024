@@ -2,6 +2,11 @@ package com.siemens.customerapi.services;
 
 import com.siemens.customerapi.models.Customer;
 import com.siemens.customerapi.repositories.CustomerRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +16,8 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public Customer addCustomer(Customer customer) {
@@ -56,6 +63,13 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public List<Customer> getCustomerByContactNo(long contactNo) {
-        return null;
+        CriteriaBuilder criteriaBuilder=entityManager.getCriteriaBuilder();
+        CriteriaQuery<Customer> cq= criteriaBuilder.createQuery(Customer.class);
+        Root<Customer> root=cq.from(Customer.class);
+        cq.where(criteriaBuilder.equal(root.get("contactNo"), contactNo));
+        CriteriaQuery<Customer> result=cq.select(root);
+        TypedQuery<Customer> typedQuery= entityManager.createQuery(result);
+        return typedQuery.getResultList();
+
     }
 }
