@@ -1,5 +1,6 @@
 package com.siemens.customerapi.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,7 @@ public  class Customer  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Account_No")
+    @Schema(hidden = true)
     private long accountNo;
     @Embedded
     private FullName fullName;

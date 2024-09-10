@@ -94,12 +94,12 @@ public ResponseEntity<ResponseWrapper> updateCustomerByAccountNo(@Valid @Request
 
     @DeleteMapping("/v1.0/{accountNo}")
     @CrossOrigin("*")
-    public ResponseEntity<ResponseWrapper> deleteCustomerByAccountNo(@PathVariable("accountNo") long accountNo){
+    public ResponseEntity<String> deleteCustomerByAccountNo(@PathVariable("accountNo") long accountNo){
 
         if (this.customerService.deleteCustomer(accountNo))
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper("Customer with Account No="+accountNo+"Deleted"));
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper("Customer with Account No="+accountNo+"Deleted").getMessage());
         else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseWrapper("Invalid Account No"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseWrapper("Invalid Account No").getMessage());
 
     }
 

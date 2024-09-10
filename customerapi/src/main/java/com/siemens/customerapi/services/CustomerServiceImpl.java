@@ -1,5 +1,6 @@
 package com.siemens.customerapi.services;
 
+import com.siemens.customerapi.exceptions.CustomerNotFoundException;
 import com.siemens.customerapi.models.Customer;
 import com.siemens.customerapi.repositories.CustomerRepository;
 import jakarta.persistence.EntityManager;
@@ -36,7 +37,8 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer getCustomerById(long accountNo) {
 
-        return this.customerRepository.findById(accountNo).orElse(null);
+        return this.customerRepository.findById(accountNo).orElseThrow(()->new CustomerNotFoundException("Customer Not for the given account no"));
+
     }
 
     @Override
