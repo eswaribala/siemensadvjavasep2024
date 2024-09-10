@@ -63,8 +63,8 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public List<Customer> getCustomerByContactNo(long contactNo) {
-        this.customerRepository.findByContactNo(contactNo);
-       /*
+      //  this.customerRepository.findByContactNo(contactNo);
+
         CriteriaBuilder criteriaBuilder=entityManager.getCriteriaBuilder();
         CriteriaQuery<Customer> cq= criteriaBuilder.createQuery(Customer.class);
         Root<Customer> root=cq.from(Customer.class);
@@ -72,6 +72,6 @@ public class CustomerServiceImpl implements CustomerService{
         CriteriaQuery<Customer> result=cq.select(root);
         TypedQuery<Customer> typedQuery= entityManager.createQuery(result);
         return typedQuery.getResultList();
-*/
+
     }
 }
