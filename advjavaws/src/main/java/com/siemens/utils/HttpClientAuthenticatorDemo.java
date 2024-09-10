@@ -6,16 +6,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.Authenticator;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.util.Map;
+import java.util.Base64;
 
-public class HttpClientDemo {
+public class HttpClientAuthenticatorDemo {
     //step 1
     private static final HttpClient httpClient=HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_1_1)
@@ -24,11 +23,12 @@ public class HttpClientDemo {
             .build();
 
     public static void main(String[] args){
+// Create the CredentialsProvider
 
         HttpRequest httpRequest=HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://restcountries.com/v2/all"))
-
+                .uri(URI.create("https://httpbin.org/basic-auth/user/pass"))
+                .header("Authorization", getBasicAuthenticationHeader("user", "pass"))
                 .build();
 
         HttpResponse httpResponse=null;
@@ -40,16 +40,7 @@ public class HttpClientDemo {
             HttpHeaders httpHeaders= httpResponse.headers();
             httpHeaders.map().entrySet().stream().forEach(entry->System.out.println(entry.getKey()
                     +","+entry.getValue()));
-            //print all the country names
-            JSONArray array = new JSONArray(httpResponse.body().toString());
-            JSONObject object=null;
-
-            for(int i=0; i < array.length(); i++)
-            {
-                object = array.getJSONObject(i);
-                System.out.println(object.get("name"));
-            }
-
+            System.out.println(httpResponse.body().toString());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -60,5 +51,8 @@ public class HttpClientDemo {
 
     }
 
-
+    private static final String getBasicAuthenticationHeader(String username, String password) {
+        String valueToEncode = username + ":" + password;
+        return "Basic " + Base64.getEncoder().encodeToString(valueToEncode.getBytes());
+    }
 }
