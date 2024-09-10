@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public sealed class Employee  permits  FullTimeEmployee,ContractEmployee{
     private int basicSalary;
     private double bonus;
 }
