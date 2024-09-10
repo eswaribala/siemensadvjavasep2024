@@ -80,7 +80,7 @@ public class CustomerController {
     }
 
  */
-@PutMapping("/v1.0}")
+@PutMapping("/v1.0")
 @CrossOrigin("*")
 public ResponseEntity<ResponseWrapper> updateCustomerByAccountNo(@Valid @RequestBody UpdateRequest updateRequest){
 

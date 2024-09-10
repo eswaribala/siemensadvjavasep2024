@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name="Corporate")
 @SuperBuilder
 @EqualsAndHashCode(callSuper = false)
-public non-sealed class Corporate extends Customer {
+public class Corporate extends Customer {
     @Enumerated(EnumType.STRING)
     @Column(name="Company_Type")
     private CompanyType companyType;

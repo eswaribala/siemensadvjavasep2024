@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="Individual")
 @EqualsAndHashCode(callSuper = false)
-public non-sealed class Individual extends Customer{
+public class Individual extends Customer{
     @Column(name="DOB")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dob;

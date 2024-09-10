@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Table(name="Customer")
 @Inheritance(strategy = InheritanceType.JOINED)
-public sealed class Customer permits Individual,Corporate {
+public  class Customer  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Account_No")
