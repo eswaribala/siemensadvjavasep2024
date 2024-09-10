@@ -1,6 +1,7 @@
 package com.siemens.customerapi.controllers;
 
 import com.siemens.customerapi.dtos.ResponseWrapper;
+import com.siemens.customerapi.dtos.UpdateRequest;
 import com.siemens.customerapi.models.Customer;
 import com.siemens.customerapi.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,7 @@ public class CustomerController {
 
     }
 
-
+/*
     @PutMapping("/v1.0/{accountNo}")
     @CrossOrigin("*")
     public ResponseEntity<ResponseWrapper> updateCustomerByAccountNo(@PathVariable("accountNo")
@@ -76,6 +77,20 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseWrapper("Invalid Account No"));
 
     }
+
+ */
+@PutMapping("/v1.0}")
+@CrossOrigin("*")
+public ResponseEntity<ResponseWrapper> updateCustomerByAccountNo(@RequestBody UpdateRequest updateRequest){
+
+    Customer customerInstance= this.customerService.updateCustomer(updateRequest.getAccountNo(),updateRequest.getEmail(),updateRequest.getContactNo());
+    if (customerInstance!=null)
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper(customerInstance));
+    else
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseWrapper("Invalid Account No"));
+
+}
+
     @DeleteMapping("/v1.0/{accountNo}")
     @CrossOrigin("*")
     public ResponseEntity<ResponseWrapper> deleteCustomerByAccountNo(@PathVariable("accountNo") long accountNo){
