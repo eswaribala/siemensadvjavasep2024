@@ -4,14 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class ProductV2 {
     private long productId;
     private String name;
     private int qty;
     private String unit;
-    private double cost ;
+    private BigDecimal cost = BigDecimal.ZERO;
 
 }
