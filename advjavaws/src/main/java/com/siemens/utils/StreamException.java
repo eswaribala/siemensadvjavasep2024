@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class StreamException {
     public static void main(String[] args){
-        List<Integer> integers = Arrays.asList(3, 9, 7, 10, 20);
+        List<Integer> integers = Arrays.asList(3, 9, 7, 0, 10, 20);
         integers.forEach(lambdaWrapper(i -> System.out.println(50 / i)));
         List<String> names=Arrays.asList("Param","bala","viki","ram",null);
         names.forEach(throwingConsumerWrapper(i -> System.out.println(i.length()<=3)));
