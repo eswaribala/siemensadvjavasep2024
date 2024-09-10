@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -81,7 +82,7 @@ public class CustomerController {
  */
 @PutMapping("/v1.0}")
 @CrossOrigin("*")
-public ResponseEntity<ResponseWrapper> updateCustomerByAccountNo(@RequestBody UpdateRequest updateRequest){
+public ResponseEntity<ResponseWrapper> updateCustomerByAccountNo(@Valid @RequestBody UpdateRequest updateRequest){
 
     Customer customerInstance= this.customerService.updateCustomer(updateRequest.getAccountNo(),updateRequest.getEmail(),updateRequest.getContactNo());
     if (customerInstance!=null)
