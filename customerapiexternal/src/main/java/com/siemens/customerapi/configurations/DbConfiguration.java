@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableConfigurationProperties(VaultConfiguration.class)
+//@EnableConfigurationProperties(VaultConfiguration.class)
 public class DbConfiguration {
 
     @Value("${db_url}")
@@ -18,22 +18,25 @@ public class DbConfiguration {
     private String driver;
 
     private DataSourceBuilder dataSourceBuilder;
-    private final VaultConfiguration vaultConfiguration;
-
+    //private final VaultConfiguration vaultConfiguration;
+/*
     public DbConfiguration (VaultConfiguration vaultConfig)
     {
 
         this.vaultConfiguration=vaultConfig;
     }
-
+*/
 
     @Bean
 
     public DataSource getDataSource()
     {
+        System.out.println(dbUrl);
+        System.out.println(driver);
+
         System.out.println("Entering Given Env.....");
-        System.out.println("User Name..."+vaultConfiguration.getUsername());
-        System.out.println("Password..."+vaultConfiguration.getPassword());
+      //  System.out.println("User Name..."+vaultConfiguration.getUsername());
+        //System.out.println("Password..."+vaultConfiguration.getPassword());
         //System.out.println("User Name..."+vaultConfiguration.getUsername1());
         //System.out.println("Password..."+vaultConfiguration.getPassword1());
         dataSourceBuilder=DataSourceBuilder.create();
