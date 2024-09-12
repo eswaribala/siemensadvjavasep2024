@@ -7,6 +7,7 @@ import com.siemens.customerapi.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,6 +36,8 @@ public class CustomerController {
     //retrieve all customers
     @GetMapping("/v1.0")
     @CrossOrigin("*")
+    @PreAuthorize("hasAuthority('SCOPE_Developer')")
+
     public List<Customer> fetchAllCustomers(){
         return this.customerService.getAllCustomers();
     }
