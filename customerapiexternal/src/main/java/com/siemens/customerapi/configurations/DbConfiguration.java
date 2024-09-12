@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableScheduling
 @EnableConfigurationProperties(VaultConfiguration.class)
 public class DbConfiguration {
 
@@ -32,7 +31,6 @@ public class DbConfiguration {
 
 
     @Bean
-    @RefreshScope
     public DataSource getDataSource()
     {
         System.out.println(dbUrl);
