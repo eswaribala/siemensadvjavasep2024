@@ -97,16 +97,18 @@
         </dependency>
 
         <!-- vault client -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-vault-config</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- config client -->
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
+
         </dependency>
+
 
         <!--Eureka Client-->
         <dependency>
