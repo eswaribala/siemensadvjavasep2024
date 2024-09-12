@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Table(name="Customer")
 @Inheritance(strategy = InheritanceType.JOINED)
-public  class Customer  {
+public  class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Account_No")

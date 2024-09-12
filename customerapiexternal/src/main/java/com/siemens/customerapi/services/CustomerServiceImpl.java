@@ -50,7 +50,6 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     @CachePut(value="customers", key="#accountNo")
-
     public Customer updateCustomer(long accountNo, String email, long contactNo) {
         Customer customer=getCustomerById(accountNo);
         if(customer!=null){

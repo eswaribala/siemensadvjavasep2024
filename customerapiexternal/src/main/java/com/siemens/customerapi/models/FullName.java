@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class FullName {
+public class FullName implements Serializable {
     @Column(name="First_Name",nullable = false,length = 50)
     private String firstName;
     @Column(name="Middle_Name",nullable =true,length = 50)

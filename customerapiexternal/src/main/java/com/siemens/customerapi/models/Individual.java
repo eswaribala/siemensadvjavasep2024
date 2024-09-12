@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="Individual")
 @EqualsAndHashCode(callSuper = false)
-public class Individual extends Customer{
+public class Individual extends Customer implements Serializable {
     @Column(name="DOB")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dob;

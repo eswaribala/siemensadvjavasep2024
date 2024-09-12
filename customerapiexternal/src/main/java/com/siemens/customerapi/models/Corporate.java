@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name="Corporate")
 @SuperBuilder
 @EqualsAndHashCode(callSuper = false)
-public class Corporate extends Customer {
+public class Corporate extends Customer implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name="Company_Type")
     private CompanyType companyType;
