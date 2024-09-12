@@ -25,6 +25,40 @@ spring:
       discovery:
         locator:
           enabled: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: http://localhost:7070/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: http://localhost:7070/auth/realms/master/protocol/openid-connect/auth
+            userinfo-uri: http://localhost:7070/auth/realms/master/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          keycloak-with-developer-scope:
+            provider: keycloak
+            client-id: client3
+            client-secret: Uw5bBjIQmQGSwApppZvVX99rVgwFNhRT
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+          keycloak-without-developer-scope:
+            provider: keycloak
+            client-id: client4
+            client-secret: Qpz2ZFGEiSBxwGcgDJ2VSsHm255Jby5A
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+    securitySchemes:
+      my_oAuth_security_schema:
+        type: oauth2
+        flows:
+          implicit:
+            authorizationUrl: https://localhost:7070/oauth2/authorize
+            scopes:
+              read_access: read data
+              write_access: modify data
+
+
+
 management:
   endpoints:
     web:
