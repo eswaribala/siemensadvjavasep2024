@@ -9,6 +9,9 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,13 +31,17 @@ public class CustomerServiceImpl implements CustomerService{
             return null;
     }
 
+
     @Override
+    @Cacheable(value = "customers")
     public List<Customer> getAllCustomers() {
 
         return this.customerRepository.findAll();
     }
 
     @Override
+    @Cacheable(value="customers", key="#accountNo", condition="#accountNo>0")
+
     public Customer getCustomerById(long accountNo) {
 
         return this.customerRepository.findById(accountNo).orElseThrow(()->new CustomerNotFoundException("Customer Not Found for the given account no"));
@@ -42,6 +49,8 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
+    @CachePut(value="customers", key="#accountNo")
+
     public Customer updateCustomer(long accountNo, String email, long contactNo) {
         Customer customer=getCustomerById(accountNo);
         if(customer!=null){
@@ -53,6 +62,8 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
+    @CacheEvict(value="customers", key="#accountNo")
+
     public boolean deleteCustomer(long accountNo) {
         boolean status=false;
         Customer customer=getCustomerById(accountNo);
