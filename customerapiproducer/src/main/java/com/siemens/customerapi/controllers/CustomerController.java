@@ -1,5 +1,6 @@
 package com.siemens.customerapi.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.siemens.customerapi.dtos.ResponseWrapper;
 import com.siemens.customerapi.dtos.UpdateRequest;
 import com.siemens.customerapi.models.Customer;
@@ -60,7 +61,7 @@ public class CustomerController {
 
     @GetMapping("/v1.0/kafka/{accountNo}")
     @CrossOrigin("*")
-    public ResponseEntity<ResponseWrapper> publishCustomerInfo(@PathVariable("accountNo") long accountNo){
+    public ResponseEntity<ResponseWrapper> publishCustomerInfo(@PathVariable("accountNo") long accountNo) throws JsonProcessingException {
 
         Customer customerInstance= this.customerService.getCustomerById(accountNo);
         if (customerInstance!=null) {
