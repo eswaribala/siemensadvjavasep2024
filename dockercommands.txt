@@ -1,0 +1,1 @@
+docker run --name=eureka-server --network siemensnetwork --publish 8761:8761 -d steeltoeoss/eureka-server
