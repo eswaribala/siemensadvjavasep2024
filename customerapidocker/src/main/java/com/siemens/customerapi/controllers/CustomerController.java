@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//Modified by Parameswari
+
 @RestController
 @RequestMapping("customers") //plural naming convention
 public class CustomerController {
