@@ -1,2 +1,4 @@
 docker run --name=eureka-server --network siemensnetwork --publish 8761:8761 -d steeltoeoss/eureka-server
 docker run  --name=confgserver -p 8888:8888 --network siemensnetwork -e SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/eswaribala/siemensconfigrepo.git -d springcloud/configserver
+
+docker run --rm --cap-add=IPC_LOCK -e VAULT_ADDR=http://localhost:8200 -p 8200:8200 --network siemensnetwork  -d --name=dev-vault vault:1.2.2
