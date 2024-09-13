@@ -5,7 +5,10 @@ services:
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=customerdbsep2024
+      - MYSQL_DATABASE=customerdevdbsep2024
+      - MYSQL_DATABASE=customerproddbsep2024
+      - MYSQL_DATABASE=customerqadbsep2024
+      - MYSQL_DATABASE=customertestdbsep2024
     volumes:
       - /data/mysql
     healthcheck:        
